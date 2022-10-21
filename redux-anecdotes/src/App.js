@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createNew, vote } from './reducers/anecdoteReducer'
+import { AnList } from './components/AnecdoteList'
+import { AnForm } from './components/AnecdoteForm'
 
 const App = () => {
   const [newAnecdote,setNewAnecdote] = useState("")
@@ -23,22 +25,9 @@ const App = () => {
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
-          </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => voter(anecdote.id)}>vote</button>
-          </div>
-        </div>
-      )}
+      <AnList anecdotes={anecdotes} voter={voter}/>      
       <h2>create new</h2>
-      <form onSubmit={addNew}>    
-        <div><input onChange={handleNewAnectode}/></div>
-        <button type='submit'>create</button>
-      </form>
+      <AnForm handleNewAnectode={handleNewAnectode} addNew={addNew}/>
     </div>
   )
 }
