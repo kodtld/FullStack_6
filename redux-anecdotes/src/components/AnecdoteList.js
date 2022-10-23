@@ -1,6 +1,10 @@
 const AnList = (props) =>{
     const voter = props.voter
-    const anecdotes = props.anecdotes
+    const unsortedAnecdotes = props.anecdotes
+    const anecdotes = unsortedAnecdotes.slice().sort(function(a, b) {
+      if (a.votes > b.votes) return -1;
+      if (a.votes < b.votes) return 1;
+      return 0;})
     return(
     anecdotes.map(anecdote =>
       <div key={anecdote.id}>
@@ -9,7 +13,7 @@ const AnList = (props) =>{
         </div>
         <div>
           has {anecdote.votes}
-          <button onClick={() => voter(anecdote.id)}>vote</button>
+          <button onClick={() => voter(anecdote)}>vote</button>
         </div>
       </div>
   ))};
