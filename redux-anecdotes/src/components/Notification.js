@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux'
-
 const Notification = (props) => {
   const notification = props.notification
   const style = {

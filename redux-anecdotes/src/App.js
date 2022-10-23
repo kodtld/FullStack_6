@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { createNew, voteAnecdote } from './reducers/anecdoteSlice'
-import { notifChange } from './reducers/notifReducer'
+import { setNotification } from './reducers/notifSlice'
 import { AnList } from './components/AnecdoteList'
 import { AnForm } from './components/AnecdoteForm'
 import Notification from './components/Notification'
@@ -9,7 +9,7 @@ import Notification from './components/Notification'
 const App = () => {
   const [newAnecdote,setNewAnecdote] = useState("")
   const anecdotes = useSelector(state => state.anecdoteSlice)
-  const notification = useSelector(state => state.notifications)
+  const notification = useSelector(state => state.notifSlice)
   const dispatch = useDispatch()
   
   const handleNewAnectode = (event) =>{
@@ -19,17 +19,17 @@ const App = () => {
   const addNew = (event) => {
     event.preventDefault()
     dispatch(createNew(newAnecdote))
-    dispatch(notifChange(newAnecdote + " added to anecdotes"))
+    dispatch(setNotification(newAnecdote + " added to anecdotes"))
     setTimeout(()=>{
-      dispatch(notifChange(""))
+      dispatch(setNotification(""))
     },5000)
   }
 
   const voter = (id) => {
     dispatch(voteAnecdote(id))
-    dispatch(notifChange("Vote received! :)"))
+    dispatch(setNotification("Vote received! :)"))
     setTimeout(()=>{
-      dispatch(notifChange(""))
+      dispatch(setNotification(""))
     },5000)
   }
 
