@@ -1,4 +1,6 @@
-const notifReducer = (state = 'Alkunäytös', action) => {
+import { createSlice } from '@reduxjs/toolkit'
+
+const notifReducer = (state = "", action) => {
     switch (action.type) {
       case 'SET_NOTIF':
         return action.notification
