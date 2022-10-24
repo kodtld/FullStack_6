@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-
 const initialState = ""
 let helper
 export const notifSlice = createSlice({
