@@ -25,21 +25,14 @@ const App = () => {
   const addNew = async (event) => {
     event.preventDefault()
     dispatch(createNew(newAnecdote))
-    dispatch(setNotification(newAnecdote + " added!"))
-    
+    dispatch(setNotification(newAnecdote + " added!",5))
     setNewAnecdote("")
-    setTimeout(()=>{
-      dispatch(setNotification(""))
-    },5000)
   }
   
   const voter = (anecdote) => {
     console.log("app voter",anecdote.id)
     dispatch(voteAnecdote(anecdote.id,anecdote))
-    dispatch(setNotification("Vote received! :)"))
-    setTimeout(()=>{
-      dispatch(setNotification(""))
-    },5000)
+    dispatch(setNotification("Vote received! :)",5))
   }
 
   return (
